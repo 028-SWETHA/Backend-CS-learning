@@ -7,7 +7,14 @@ const bcrypt = require("bcryptjs");
 
 
 const app = express();
-app.use(cors());
+const corsOptions = {
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
+
 app.use(express.json());
 
 // ✅ Use ENV variable for MongoDB
